@@ -14,6 +14,11 @@ auth.secure = True
 auth.set_access_token(secrets['Access Token'], secrets['Access Token Secret'])
 t = tweepy.API(auth)
 
-tweet = m.make_sentence()
-print("Tweeting: ", tweet)
-#t.update_status(m.make_sentence())
+for __ in range(10):
+    tweet = m.make_sentence()
+    print("Tweeting: ", tweet)
+    try:
+        t.update_status(tweet)
+        break
+    except tweepy.error.TweepError:
+        pass
